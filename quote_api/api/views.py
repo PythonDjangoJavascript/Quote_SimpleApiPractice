@@ -3,6 +3,7 @@ from rest_framework import generics
 from quote_api.models import Quote
 from .serializers import QuoteSerializer
 from .permissions import IsAdminUserOrReadOnly
+from quote_api.api.pagination import FourObjectsPagePagination
 
 
 class QuoteListCreateAPIView(generics.ListCreateAPIView):
@@ -11,6 +12,7 @@ class QuoteListCreateAPIView(generics.ListCreateAPIView):
     queryset = Quote.objects.all().order_by('-id')
     serializer_class = QuoteSerializer
     permission_classes = [IsAdminUserOrReadOnly, ]
+    pagination_class = FourObjectsPagePagination
 
 
 class QuoteDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
