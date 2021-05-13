@@ -11,3 +11,11 @@ class QuoteListCreateAPIView(generics.ListCreateAPIView):
     queryset = Quote.objects.all().order_by('-id')
     serializer_class = QuoteSerializer
     permission_classes = [IsAdminUserOrReadOnly, ]
+
+
+class QuoteDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """Manages Quote detail api Endpoints"""
+
+    queryset = Quote.objects.all()
+    serializer_class = QuoteSerializer
+    permission_classes = [IsAdminUserOrReadOnly, ]
